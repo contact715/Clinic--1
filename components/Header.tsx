@@ -53,7 +53,7 @@ export const Header: React.FC = () => {
   ];
 
   const navItemBaseClass = `
-    relative z-10 flex items-center gap-1.5 font-bold text-[#1D1D1B] rounded-xl transition-all duration-300
+    relative z-10 flex items-center gap-1.5 font-bold text-[#1D1D1B] rounded-lg transition-all duration-300
     border border-transparent
     hover:bg-[#1D1D1B] hover:text-white hover:-translate-y-1 hover:-rotate-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]
   `;
@@ -67,18 +67,18 @@ export const Header: React.FC = () => {
     }`}>
       
       <div className={`w-full max-w-[1440px] px-4 md:px-8 lg:px-12 transition-all duration-500`}>
-          <div className={`w-full pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] rounded-[2rem] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] ${
+          <div className={`w-full pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] ${
               scrolled ? 'shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)]' : ''
           }`}>
 
               {/* TOP RAIL */}
-              <div className={`w-full bg-[#1D1D1B] overflow-hidden relative transition-all duration-500 rounded-t-[2rem] ${
+              <div className={`w-full bg-[#1D1D1B] overflow-hidden relative transition-all duration-500 rounded-t-xl ${
                   scrolled ? 'h-0 opacity-0' : 'h-7 opacity-100'
               }`}>
                 <div className="w-full px-6 flex items-center justify-center h-full text-white/90 text-[9px] font-mono tracking-widest uppercase">
                     <div className="flex items-center gap-3 md:gap-4 overflow-x-auto scrollbar-hide w-full md:w-auto justify-center">
                         {trustFeatures.map((feature, idx) => (
-                           <div key={idx} className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/10 border border-white/5 shrink-0 hover:bg-white/20 transition-colors cursor-default">
+                           <div key={idx} className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/10 border border-white/5 shrink-0 hover:bg-white/20 transition-colors cursor-default">
                                <span className="text-[#FDC506]">{feature.icon}</span>
                                <span className="whitespace-nowrap font-bold">{feature.text}</span>
                            </div>
@@ -89,7 +89,7 @@ export const Header: React.FC = () => {
 
               {/* MAIN NAV BAR */}
               <div className={`w-full bg-white/95 backdrop-blur-xl border-b border-white/20 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] relative z-20 ${
-                  scrolled ? 'rounded-[2rem]' : 'rounded-b-[2rem]'
+                  scrolled ? 'rounded-xl' : 'rounded-b-xl'
               }`}>
                 <div className="w-full px-4 md:px-8 transition-all duration-500">
                     <div className={`flex items-center justify-between transition-all duration-500 ${
@@ -105,7 +105,7 @@ export const Header: React.FC = () => {
                                     COOL DOC
                                  </h1>
                                  <div className={`flex items-center gap-2 transition-all duration-500 ${scrolled ? 'mt-0' : 'mt-1'}`}>
-                                    <span className="text-[8px] font-bold text-[#1D1D1B] uppercase tracking-[0.3em] bg-[#FDC506] px-1.5 py-0.5 rounded-full w-fit">
+                                    <span className="text-[8px] font-bold text-[#1D1D1B] uppercase tracking-[0.3em] bg-[#FDC506] px-1.5 py-0.5 rounded w-fit">
                                         Appliance Repair
                                     </span>
                                  </div>
@@ -129,7 +129,7 @@ export const Header: React.FC = () => {
                                 <div className={`absolute top-[calc(100%+1.5rem)] left-1/2 -translate-x-1/2 w-[640px] transition-all duration-300 origin-top z-50 ${
                                     isServicesOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 translate-y-2 invisible'
                                 }`}>
-                                    <div className="bg-white rounded-[2rem] shadow-2xl border-[4px] border-white overflow-hidden ring-1 ring-black/5">
+                                    <div className="bg-white rounded-xl shadow-2xl border-[4px] border-white overflow-hidden ring-1 ring-black/5">
                                         <div className="grid grid-cols-12 min-h-[320px]">
                                             <div className="col-span-5 bg-[#F8FAFC] p-6 flex flex-col justify-between relative overflow-hidden">
                                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#E30613] opacity-5 rounded-bl-full -mr-8 -mt-8"></div>
@@ -149,7 +149,7 @@ export const Header: React.FC = () => {
                                                     </div>
                                                     <div className="grid grid-cols-1 gap-1">
                                                         {services.kitchen.map((s, i) => (
-                                                            <a href="#services" key={i} className="flex items-center gap-3 p-2 rounded-xl hover:bg-blue-50 transition-colors group">
+                                                            <a href="#services" key={i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 transition-colors group">
                                                                 <div className="text-gray-400 group-hover:text-[#1866B9] transition-colors">{s.icon}</div>
                                                                 <span className="text-xs font-bold text-[#1D1D1B] group-hover:text-[#1866B9]">{s.name}</span>
                                                             </a>
@@ -163,7 +163,7 @@ export const Header: React.FC = () => {
                                                     </div>
                                                     <div className="grid grid-cols-1 gap-1">
                                                         {services.laundry.map((s, i) => (
-                                                            <a href="#services" key={i} className="flex items-center gap-3 p-2 rounded-xl hover:bg-red-50 transition-colors group">
+                                                            <a href="#services" key={i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-red-50 transition-colors group">
                                                                 <div className="text-gray-400 group-hover:text-[#E30613] transition-colors">{s.icon}</div>
                                                                 <span className="text-xs font-bold text-[#1D1D1B] group-hover:text-[#E30613]">{s.name}</span>
                                                             </a>
@@ -193,14 +193,14 @@ export const Header: React.FC = () => {
                         <div className="flex items-center gap-4">
                             <a 
                                 href="#quote" 
-                                className={`hidden lg:flex items-center justify-center rounded-full bg-[#1D1D1B] text-white font-bold uppercase tracking-widest hover:bg-gray-800 transition-all duration-500 shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
+                                className={`hidden lg:flex items-center justify-center rounded-lg bg-[#1D1D1B] text-white font-bold uppercase tracking-widest hover:bg-gray-800 transition-all duration-500 shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
                                     scrolled ? 'px-5 py-2.5 text-[10px]' : 'px-7 py-3.5 text-xs'
                                 }`}
                             >
                                 Request Quote
                             </a>
 
-                            <a href="tel:8187310445" className="group relative overflow-hidden rounded-full bg-[#E30613] shadow-lg hover:bg-[#C20510] hover:scale-105 transition-all duration-300">
+                            <a href="tel:8187310445" className="group relative overflow-hidden rounded-lg bg-[#E30613] shadow-lg hover:bg-[#C20510] hover:scale-105 transition-all duration-300">
                                  <div className={`relative flex items-center gap-3 transition-all duration-500 ${
                                      scrolled ? 'px-5 py-2' : 'px-7 py-3'
                                  }`}>
@@ -216,7 +216,7 @@ export const Header: React.FC = () => {
                                  </div>
                             </a>
 
-                            <button onClick={() => setIsMobileMenuOpen(true)} className="lg:hidden p-2 text-[#1D1D1B] bg-gray-100 rounded-full">
+                            <button onClick={() => setIsMobileMenuOpen(true)} className="lg:hidden p-2 text-[#1D1D1B] bg-gray-100 rounded-lg">
                                 <Menu size={20} />
                             </button>
                         </div>

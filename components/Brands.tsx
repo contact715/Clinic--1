@@ -133,10 +133,10 @@ export const Brands: React.FC = () => {
   return (
     <section className="py-24 bg-[#F4F6F8] relative overflow-hidden">
       
-      {/* TECHNICAL BACKGROUND GRID - Explicitly Added */}
+      {/* TECHNICAL BACKGROUND GRID - High Visibility */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-         {/* Using a slightly darker gray for lines to ensure visibility on light background */}
-         <div className="absolute inset-0 bg-[linear-gradient(to_right,#D1D5DB_1px,transparent_1px),linear-gradient(to_bottom,#D1D5DB_1px,transparent_1px)] bg-[size:40px_40px] opacity-40"></div>
+         {/* Darker gray lines for visibility on light background */}
+         <div className="absolute inset-0 bg-[linear-gradient(to_right,#D1D5DB_1px,transparent_1px),linear-gradient(to_bottom,#D1D5DB_1px,transparent_1px)] bg-[size:40px_40px] opacity-60"></div>
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 mb-16 text-center relative z-10">
@@ -153,12 +153,12 @@ export const Brands: React.FC = () => {
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
-          {/* STATIC GRID - NO MARQUEE */}
+          {/* STATIC GRID - Square Cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {brands.map((brand, i) => (
                   <div 
                     key={i} 
-                    className="group relative bg-white h-32 rounded-3xl border border-gray-200/80 shadow-md flex items-center justify-center transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:border-gray-300 overflow-hidden z-10"
+                    className="group relative bg-white h-32 rounded-xl border border-gray-200/80 shadow-md flex items-center justify-center transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:border-gray-300 overflow-hidden z-10"
                   >
                       {/* Hover Reveal: Authorized Badge */}
                       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0 z-20">

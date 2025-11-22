@@ -1,148 +1,158 @@
 
-import React from 'react';
-import { BadgeCheck, Wrench, Phone, Star, ShieldCheck, Activity } from 'lucide-react';
-
-interface TeamMember {
-  name: string;
-  role: string;
-  image: string;
-  id: string;
-  specialty: string;
-  exp: string;
-  color: string;
-}
+import React, { useState } from 'react';
+import { ShieldCheck, Star, Hash, Plus } from 'lucide-react';
 
 export const TeamSection: React.FC = () => {
-  const team: TeamMember[] = [
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const team = [
     {
-      name: "Alex R.",
-      role: "Founder & Chief Tech",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       id: "UNIT-01",
+      name: "Alex Richardson",
+      role: "Founder & Chief Tech",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=1200",
       specialty: "High-End Refrigeration",
       exp: "23 Years",
-      color: "#E30613"
+      color: "#E30613" // Red
     },
     {
-      name: "Sarah J.",
-      role: "Head of Dispatch",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       id: "HQ-LEAD",
+      name: "Sarah Jenkins",
+      role: "Head of Dispatch",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1200",
       specialty: "Logistics & Support",
       exp: "12 Years",
-      color: "#1866B9"
+      color: "#1866B9" // Blue
     },
     {
-      name: "Mike T.",
-      role: "Senior Technician",
-      image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       id: "UNIT-04",
+      name: "Mike Thompson",
+      role: "Senior Technician",
+      image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200",
       specialty: "Gas & Electric Ranges",
       exp: "18 Years",
-      color: "#FDC506"
+      color: "#FDC506" // Yellow
     },
     {
-      name: "David L.",
-      role: "Field Specialist",
-      image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       id: "UNIT-09",
+      name: "David Lee",
+      role: "Field Specialist",
+      image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=1200",
       specialty: "Laundry Systems",
       exp: "9 Years",
-      color: "#1D1D1B"
+      color: "#1D1D1B" // Black
     }
   ];
 
   return (
-    <section className="py-24 bg-[#F4F6F8] relative z-20 overflow-hidden border-t border-gray-200">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+    <section className="py-24 bg-[#F4F6F8] relative z-20 overflow-hidden">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20">
         
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1D1D1B]/5 border border-[#1D1D1B]/10 text-[#1D1D1B] font-bold text-[10px] tracking-widest uppercase mb-6">
-                    <BadgeCheck size={12} />
-                    Certified Personnel
+        <div className="mb-12 flex flex-col md:flex-row justify-between items-end">
+            <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white border border-gray-200 text-[#1D1D1B] font-bold text-[10px] tracking-widest uppercase mb-4 shadow-sm">
+                    <ShieldCheck size={12} className="text-[#E30613]" />
+                    Personnel Roster
                 </div>
-                <h2 className="text-4xl md:text-6xl font-[900] text-[#1D1D1B] tracking-tight leading-[0.9]">
-                    MEET THE <br/>
-                    <span className="text-[#1866B9]">SPECIALISTS.</span>
+                <h2 className="text-4xl md:text-6xl font-[900] text-[#1D1D1B] tracking-tight leading-none">
+                    THE <span className="text-[#E30613]">SPECIALISTS.</span>
                 </h2>
             </div>
-            <div className="flex flex-col items-end">
-                <p className="text-gray-500 text-right max-w-xs text-sm font-medium">
-                   Factory trained. Background checked. The most trusted hands in Los Angeles.
+            <div className="hidden md:block text-right">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                    Hover to Expand Personnel File
                 </p>
             </div>
         </div>
 
-        {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* DESKTOP: CINEMATIC ACCORDION */}
+        <div className="hidden lg:flex h-[600px] gap-4">
             {team.map((member, idx) => (
                 <div 
-                    key={idx} 
-                    className="group relative bg-white rounded-[2rem] overflow-hidden border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
+                    key={idx}
+                    onMouseEnter={() => setActiveIndex(idx)}
+                    className={`relative rounded-[2rem] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer group ${
+                        activeIndex === idx ? 'flex-[3]' : 'flex-[1]'
+                    }`}
                 >
-                    {/* Image Container */}
-                    <div className="relative h-[320px] overflow-hidden bg-gray-100">
+                    {/* Background Image */}
+                    <div className="absolute inset-0 bg-gray-900">
                         <img 
                             src={member.image} 
                             alt={member.name} 
-                            className="w-full h-full object-cover transition-all duration-700 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105"
+                            className={`w-full h-full object-cover transition-all duration-700 ${
+                                activeIndex === idx ? 'scale-100 opacity-100 grayscale-0' : 'scale-110 opacity-50 grayscale'
+                            }`}
                         />
+                        <div className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90 transition-opacity duration-500 ${activeIndex === idx ? 'opacity-80' : 'opacity-90'}`}></div>
                         
-                        {/* Overlay Gradient (Solid Fade) */}
-                        <div className="absolute inset-0 bg-[#1D1D1B]/10 mix-blend-multiply group-hover:opacity-0 transition-opacity duration-500"></div>
-
-                        {/* Scanner Line Effect */}
-                        <div className="absolute top-0 left-0 w-full h-[2px] bg-white/80 shadow-[0_0_15px_rgba(255,255,255,0.8)] translate-y-[-10px] group-hover:translate-y-[320px] transition-transform duration-[1.5s] ease-in-out opacity-0 group-hover:opacity-100"></div>
-
-                        {/* Status Badge */}
-                        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-2 py-1 rounded text-[9px] font-black text-[#1D1D1B] uppercase tracking-widest border border-white/20 shadow-sm">
-                            {member.id}
-                        </div>
+                        {/* Color Overlay on Inactive */}
+                        <div className={`absolute inset-0 mix-blend-multiply transition-opacity duration-500 ${
+                            activeIndex === idx ? 'opacity-0' : 'opacity-100'
+                        }`} style={{ backgroundColor: member.color }}></div>
                     </div>
 
-                    {/* Info Card */}
-                    <div className="p-6 relative">
-                        {/* Floating Role Badge */}
-                        <div 
-                            className="absolute -top-4 left-6 px-3 py-1.5 rounded-lg text-white text-[10px] font-bold uppercase tracking-wide shadow-lg"
-                            style={{ backgroundColor: member.color }}
-                        >
-                            {member.role}
-                        </div>
-
-                        <div className="mt-2">
-                            <h3 className="text-2xl font-[900] text-[#1D1D1B] uppercase tracking-tight">{member.name}</h3>
-                            
-                            <div className="mt-4 space-y-3">
-                                <div className="flex items-center justify-between text-xs border-b border-gray-100 pb-2">
-                                    <span className="text-gray-400 font-bold uppercase">Specialty</span>
-                                    <span className="text-[#1D1D1B] font-bold text-right">{member.specialty}</span>
-                                </div>
-                                <div className="flex items-center justify-between text-xs">
-                                    <span className="text-gray-400 font-bold uppercase">Experience</span>
-                                    <span className="text-[#1D1D1B] font-bold">{member.exp}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Hover Reveal Action */}
-                        <div className="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                            <div className="flex gap-1">
-                                {[...Array(5)].map((_, i) => (
-                                    <Star key={i} size={10} className="fill-[#FDC506] text-[#FDC506]" />
-                                ))}
-                            </div>
-                            <ShieldCheck size={16} className="text-[#00B67A]" />
-                        </div>
+                    {/* Vertical Title (Inactive State) */}
+                    <div className={`absolute bottom-8 left-8 transition-all duration-500 ${
+                        activeIndex === idx ? 'opacity-0 translate-y-10' : 'opacity-100 translate-y-0'
+                    }`}>
+                        <h3 className="text-2xl font-[900] text-white uppercase tracking-tighter vertical-lr transform -rotate-180" style={{ writingMode: 'vertical-rl' }}>
+                            {member.name}
+                        </h3>
+                        <span className="mt-4 block text-[10px] font-mono text-white/60">{member.id}</span>
                     </div>
 
-                    {/* Decorative Corner */}
-                    <div 
-                        className="absolute top-0 left-0 w-full h-1 transition-transform duration-500 transform scale-x-0 group-hover:scale-x-100 origin-left"
-                        style={{ backgroundColor: member.color }}
-                    ></div>
+                    {/* Expanded Content (Active State) */}
+                    <div className={`absolute bottom-0 left-0 w-full p-10 transition-all duration-700 delay-100 ${
+                        activeIndex === idx ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+                    }`}>
+                        <div className="flex items-end justify-between">
+                            <div>
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/10 backdrop-blur border border-white/20 text-white font-bold text-[10px] tracking-widest uppercase mb-4">
+                                    <Hash size={10} />
+                                    {member.id}
+                                </div>
+                                <h3 className="text-5xl font-[900] text-white uppercase tracking-tight mb-2 leading-none">
+                                    {member.name}
+                                </h3>
+                                <p className="text-lg font-bold text-white/80 mb-6">{member.role}</p>
+                                
+                                <div className="flex gap-8">
+                                    <div>
+                                        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Specialty</div>
+                                        <div className="text-white font-bold">{member.specialty}</div>
+                                    </div>
+                                    <div>
+                                        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Experience</div>
+                                        <div className="text-white font-bold">{member.exp}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Action Button */}
+                            <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center hover:bg-[#E30613] hover:text-white transition-colors shadow-lg">
+                                <Plus size={24} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        {/* MOBILE: STACKED CARDS */}
+        <div className="lg:hidden space-y-4">
+            {team.map((member, idx) => (
+                <div key={idx} className="relative h-[400px] rounded-2xl overflow-hidden">
+                    <img src={member.image} className="absolute inset-0 w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 p-6 w-full">
+                        <span className="text-[#E30613] font-bold text-xs uppercase tracking-widest mb-1 block">{member.role}</span>
+                        <h3 className="text-3xl font-[900] text-white uppercase">{member.name}</h3>
+                        <div className="mt-4 pt-4 border-t border-white/10 flex justify-between text-white/80 text-sm font-medium">
+                            <span>{member.specialty}</span>
+                            <span>{member.exp}</span>
+                        </div>
+                    </div>
                 </div>
             ))}
         </div>

@@ -74,7 +74,7 @@ export const HeroText: React.FC = () => {
         
         <RippleButton 
             onClick={handleScheduleClick}
-            className="group bg-[#E30613] text-white px-10 py-6 rounded-2xl text-xl font-[900] shadow-[0_10px_40px_-10px_rgba(227,6,19,0.6)] hover:shadow-[0_20px_60px_-10px_rgba(227,6,19,0.8)] hover:bg-[#FF1F2D] hover:scale-105 transition-all duration-300 overflow-hidden ring-4 ring-[#E30613]/20"
+            className="group bg-[#E30613] text-white px-10 py-6 rounded-lg text-xl font-[900] shadow-[0_10px_40px_-10px_rgba(227,6,19,0.6)] hover:shadow-[0_20px_60px_-10px_rgba(227,6,19,0.8)] hover:bg-[#FF1F2D] hover:scale-105 transition-all duration-300 overflow-hidden ring-4 ring-[#E30613]/20"
             rippleColor="#ffffff"
         >
           <span className="flex items-center gap-3 tracking-wide">
@@ -82,7 +82,7 @@ export const HeroText: React.FC = () => {
           </span>
         </RippleButton>
         
-        <div className="flex items-center gap-4 px-6 py-4 bg-white/40 backdrop-blur-lg rounded-2xl border border-white/60 shadow-sm hover:bg-white/60 transition-colors cursor-default">
+        <div className="flex items-center gap-4 px-6 py-4 bg-white/40 backdrop-blur-lg rounded-lg border border-white/60 shadow-sm hover:bg-white/60 transition-colors cursor-default">
             <div className="relative">
                 <div className="absolute inset-0 bg-[#1866B9] blur-md opacity-30 rounded-full"></div>
                 <div className="relative w-10 h-10 bg-white rounded-full flex items-center justify-center border border-gray-100 text-[#1866B9]">

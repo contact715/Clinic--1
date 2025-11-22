@@ -101,10 +101,10 @@ export const Footer: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Giant Interactive Button - Solid Color */}
-                    <a href="tel:8187310445" className="group relative w-40 h-40 md:w-64 md:h-64 bg-[#1D1D1B] rounded-full flex flex-col items-center justify-center gap-2 transition-all duration-500 hover:scale-105 shrink-0 overflow-hidden z-20 shadow-2xl shadow-black/20 hover:bg-[#E30613]">
+                    {/* Giant Interactive Button - Squaricle */}
+                    <a href="tel:8187310445" className="group relative w-40 h-40 md:w-64 md:h-64 bg-[#1D1D1B] rounded-[2.5rem] flex flex-col items-center justify-center gap-2 transition-all duration-500 hover:scale-105 shrink-0 overflow-hidden z-20 shadow-2xl shadow-black/20 hover:bg-[#E30613]">
                         {/* Sonar Pulse Effect - Solid Rings */}
-                        <div className="absolute inset-0 rounded-full border-2 border-white/30 scale-100 opacity-0 group-hover:animate-ping-slow"></div>
+                        <div className="absolute inset-0 rounded-[2.5rem] border-2 border-white/30 scale-100 opacity-0 group-hover:animate-ping-slow"></div>
                         
                         {/* Icon with shake animation */}
                         <Phone size={32} className="text-white fill-white mb-2 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 group-hover:animate-shake" />
@@ -247,7 +247,7 @@ export const Footer: React.FC = () => {
                         <li><a href="#contact" className="text-sm text-gray-400 hover:text-white">Contact</a></li>
                     </ul>
 
-                    <a href="#quote" className="block w-full py-4 bg-[#E30613] text-white text-center font-bold uppercase text-xs tracking-widest rounded hover:bg-white hover:text-[#1D1D1B] transition-all duration-300 shadow-lg">
+                    <a href="#quote" className="block w-full py-4 bg-[#E30613] text-white text-center font-bold uppercase text-xs tracking-widest rounded-lg hover:bg-white hover:text-[#1D1D1B] transition-all duration-300 shadow-lg">
                         Free Online Quote
                     </a>
                 </div>

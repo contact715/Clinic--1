@@ -21,6 +21,8 @@ import { Preloader } from './components/Preloader';
 import { CustomCursor } from './components/CustomCursor';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { ChatBot } from './components/ChatBot';
+import { BlogSection } from './components/BlogSection';
+import { SEOContent } from './components/SEOContent';
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -135,6 +137,8 @@ const App: React.FC = () => {
         <WhyChooseUs />
         <WarrantySection />
         <ServiceMap />
+        <BlogSection />
+        <SEOContent />
         <Footer />
         
         <style>{`
@@ -167,3 +171,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+    
