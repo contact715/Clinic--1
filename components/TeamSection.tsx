@@ -1,10 +1,8 @@
 
-import React, { useState } from 'react';
-import { ShieldCheck, Star, Hash, Plus } from 'lucide-react';
+import React from 'react';
+import { ShieldCheck, Hash, Star } from 'lucide-react';
 
 export const TeamSection: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
   const team = [
     {
       id: "UNIT-01",
@@ -45,10 +43,10 @@ export const TeamSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#F4F6F8] relative z-20 overflow-hidden">
+    <section className="py-24 bg-[#F4F6F8] relative z-20">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20">
         
-        <div className="mb-12 flex flex-col md:flex-row justify-between items-end">
+        <div className="mb-16 flex flex-col md:flex-row justify-between items-end">
             <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white border border-gray-200 text-[#1D1D1B] font-bold text-[10px] tracking-widest uppercase mb-4 shadow-sm">
                     <ShieldCheck size={12} className="text-[#E30613]" />
@@ -60,97 +58,66 @@ export const TeamSection: React.FC = () => {
             </div>
             <div className="hidden md:block text-right">
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
-                    Hover to Expand Personnel File
+                    Factory trained. Background checked.
                 </p>
             </div>
         </div>
 
-        {/* DESKTOP: CINEMATIC ACCORDION */}
-        <div className="hidden lg:flex h-[600px] gap-4">
+        {/* STATIC TECHNICAL GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map((member, idx) => (
-                <div 
-                    key={idx}
-                    onMouseEnter={() => setActiveIndex(idx)}
-                    className={`relative rounded-[2rem] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer group ${
-                        activeIndex === idx ? 'flex-[3]' : 'flex-[1]'
-                    }`}
-                >
-                    {/* Background Image */}
-                    <div className="absolute inset-0 bg-gray-900">
+                <div key={idx} className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group">
+                    
+                    {/* Image Area */}
+                    <div className="relative h-80 overflow-hidden">
                         <img 
                             src={member.image} 
                             alt={member.name} 
-                            className={`w-full h-full object-cover transition-all duration-700 ${
-                                activeIndex === idx ? 'scale-100 opacity-100 grayscale-0' : 'scale-110 opacity-50 grayscale'
-                            }`}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0"
                         />
-                        <div className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90 transition-opacity duration-500 ${activeIndex === idx ? 'opacity-80' : 'opacity-90'}`}></div>
-                        
-                        {/* Color Overlay on Inactive */}
-                        <div className={`absolute inset-0 mix-blend-multiply transition-opacity duration-500 ${
-                            activeIndex === idx ? 'opacity-0' : 'opacity-100'
-                        }`} style={{ backgroundColor: member.color }}></div>
-                    </div>
-
-                    {/* Vertical Title (Inactive State) */}
-                    <div className={`absolute bottom-8 left-8 transition-all duration-500 ${
-                        activeIndex === idx ? 'opacity-0 translate-y-10' : 'opacity-100 translate-y-0'
-                    }`}>
-                        <h3 className="text-2xl font-[900] text-white uppercase tracking-tighter vertical-lr transform -rotate-180" style={{ writingMode: 'vertical-rl' }}>
-                            {member.name}
-                        </h3>
-                        <span className="mt-4 block text-[10px] font-mono text-white/60">{member.id}</span>
-                    </div>
-
-                    {/* Expanded Content (Active State) */}
-                    <div className={`absolute bottom-0 left-0 w-full p-10 transition-all duration-700 delay-100 ${
-                        activeIndex === idx ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-                    }`}>
-                        <div className="flex items-end justify-between">
-                            <div>
-                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/10 backdrop-blur border border-white/20 text-white font-bold text-[10px] tracking-widest uppercase mb-4">
-                                    <Hash size={10} />
-                                    {member.id}
-                                </div>
-                                <h3 className="text-5xl font-[900] text-white uppercase tracking-tight mb-2 leading-none">
-                                    {member.name}
-                                </h3>
-                                <p className="text-lg font-bold text-white/80 mb-6">{member.role}</p>
-                                
-                                <div className="flex gap-8">
-                                    <div>
-                                        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Specialty</div>
-                                        <div className="text-white font-bold">{member.specialty}</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Experience</div>
-                                        <div className="text-white font-bold">{member.exp}</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Action Button */}
-                            <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center hover:bg-[#E30613] hover:text-white transition-colors shadow-lg">
-                                <Plus size={24} />
+                        <div className="absolute top-4 left-4">
+                            <div className="bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-black text-[#1D1D1B] uppercase tracking-widest shadow-sm border border-white/50">
+                                {member.id}
                             </div>
                         </div>
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+                        
+                        {/* Floating Name on Image */}
+                        <div className="absolute bottom-4 left-4 text-white">
+                            <div className="bg-[#E30613] px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide w-fit mb-1 shadow-sm">
+                                {member.role}
+                            </div>
+                            <h3 className="text-2xl font-[900] uppercase leading-none tracking-tight">{member.name}</h3>
+                        </div>
                     </div>
-                </div>
-            ))}
-        </div>
 
-        {/* MOBILE: STACKED CARDS */}
-        <div className="lg:hidden space-y-4">
-            {team.map((member, idx) => (
-                <div key={idx} className="relative h-[400px] rounded-2xl overflow-hidden">
-                    <img src={member.image} className="absolute inset-0 w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 p-6 w-full">
-                        <span className="text-[#E30613] font-bold text-xs uppercase tracking-widest mb-1 block">{member.role}</span>
-                        <h3 className="text-3xl font-[900] text-white uppercase">{member.name}</h3>
-                        <div className="mt-4 pt-4 border-t border-white/10 flex justify-between text-white/80 text-sm font-medium">
-                            <span>{member.specialty}</span>
-                            <span>{member.exp}</span>
+                    {/* Stats Panel */}
+                    <div className="p-5 bg-white relative z-10">
+                        <div className="space-y-3">
+                            <div className="flex justify-between items-center border-b border-gray-100 pb-2">
+                                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Specialty</span>
+                                <span className="text-xs font-black text-[#1D1D1B] text-right">{member.specialty}</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Experience</span>
+                                <div className="flex items-center gap-2">
+                                    <div className="flex gap-0.5">
+                                        {[...Array(5)].map((_, i) => (
+                                            <Star key={i} size={8} className="fill-[#FDC506] text-[#FDC506]" />
+                                        ))}
+                                    </div>
+                                    <span className="text-xs font-black text-[#1D1D1B]">{member.exp}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                             <div className="flex items-center gap-1.5">
+                                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                 <span className="text-[9px] font-bold text-gray-400 uppercase">On Duty</span>
+                             </div>
+                             <ShieldCheck size={14} className="text-gray-300 group-hover:text-[#00B67A] transition-colors" />
                         </div>
                     </div>
                 </div>

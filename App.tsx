@@ -18,11 +18,11 @@ import { Footer } from './components/Footer';
 import { LiveBookings } from './components/LiveBookings';
 import { ExitModal } from './components/ExitModal';
 import { Preloader } from './components/Preloader';
-import { CustomCursor } from './components/CustomCursor';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { ChatBot } from './components/ChatBot';
 import { BlogSection } from './components/BlogSection';
 import { SEOContent } from './components/SEOContent';
+import { CostCalculator } from './components/CostCalculator';
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,8 +41,6 @@ const App: React.FC = () => {
     <>
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
       
-      {!isLoading && <CustomCursor />}
-
       <div className={`relative w-full min-h-screen overflow-x-hidden bg-[#F4F6F8] text-[#1D1D1B] font-sans selection:bg-[#E30613] selection:text-white scroll-smooth ${isLoading ? 'h-screen overflow-hidden' : ''}`}>
       
         {/* 1. Global Noise Overlay - Texture */}
@@ -130,6 +128,7 @@ const App: React.FC = () => {
         <ServicesSection />
         <Brands />
         <Process />
+        <CostCalculator />
         <Testimonials />
         <TeamSection />
         <FAQ />
@@ -171,4 +170,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-    
