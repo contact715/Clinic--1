@@ -1,10 +1,20 @@
 
 import { GoogleGenAI, Chat } from "@google/genai";
 
-// Initialize the Gemini API client
-// The API key is obtained from the environment variable process.env.API_KEY
-// Note: For Veo, we will re-initialize this inside the function to ensure we have the user-selected key.
-let ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Initialize the Gemini API client lazily
+let ai: GoogleGenAI | null = null;
+
+const getAiClient = (): GoogleGenAI | null => {
+  if (ai) return ai;
+
+  const apiKey = process.env.API_KEY;
+  if (apiKey) {
+    ai = new GoogleGenAI({ apiKey });
+    return ai;
+  }
+  console.warn("Gemini API Key is missing. AI features will be disabled.");
+  return null;
+};
 
 /**
  * Generates a "Los Angeles" themed sky/backdrop.
@@ -12,8 +22,12 @@ let ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 export const generateLABackground = async (): Promise<string | null> => {
   try {
     // Ensure we use the latest key if available
-    ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    
+    const client = getAiClient();
+    if (!client) return null;
+
+    // Update the local reference if needed (though getAiClient handles singleton)
+    ai = client;
+
     const model = 'gemini-2.5-flash-image';
     const prompt = `
       A breathtaking abstract vector art background of a Los Angeles sky at sunset.
@@ -22,18 +36,18 @@ export const generateLABackground = async (): Promise<string | null> => {
       Composition: Panoramic, wide, minimal details.
     `;
 
-    const response = await ai.models.generateContent({
+    const response = await client.models.generateContent({
       model: model,
       contents: { parts: [{ text: prompt }] },
       config: { imageConfig: { aspectRatio: "16:9" } }
     });
 
     for (const candidate of response.candidates || []) {
-        for (const part of candidate.content.parts) {
-            if (part.inlineData && part.inlineData.data) {
-                return `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
-            }
+      for (const part of candidate.content.parts) {
+        if (part.inlineData && part.inlineData.data) {
+          return `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
         }
+      }
     }
     return null;
   } catch (error) {
@@ -53,7 +67,9 @@ export const generateLAVideo = async (): Promise<string | null> => {
     }
 
     // Re-initialize with the potentially new key
-    ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const client = getAiClient();
+    if (!client) return null;
+    ai = client;
 
     const prompt = `
       Vector art animation of a charming Los Angeles neighborhood on a gentle hill at sunset.
@@ -64,7 +80,7 @@ export const generateLAVideo = async (): Promise<string | null> => {
       Atmosphere: Peaceful, premium, clean.
     `;
 
-    let operation = await ai.models.generateVideos({
+    let operation = await client.models.generateVideos({
       model: 'veo-3.1-fast-generate-preview',
       prompt: prompt,
       config: {
@@ -77,13 +93,13 @@ export const generateLAVideo = async (): Promise<string | null> => {
     // Poll for completion
     while (!operation.done) {
       await new Promise(resolve => setTimeout(resolve, 5000)); // Check every 5 seconds
-      operation = await ai.operations.getVideosOperation({ operation: operation });
+      operation = await client.operations.getVideosOperation({ operation: operation });
     }
 
     const videoUri = operation.response?.generatedVideos?.[0]?.video?.uri;
     if (videoUri) {
-        // Append key for download access
-        return `${videoUri}&key=${process.env.API_KEY}`;
+      // Append key for download access
+      return `${videoUri}&key=${process.env.API_KEY}`;
     }
 
     return null;
@@ -99,9 +115,13 @@ export const generateLAVideo = async (): Promise<string | null> => {
  */
 export const createChatSession = (): Chat => {
   // Re-initialize to ensure latest key is used
-  ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-  
-  return ai.chats.create({
+  const client = getAiClient();
+  if (!client) {
+    throw new Error("API Key missing for chat session");
+  }
+  ai = client;
+
+  return client.chats.create({
     model: 'gemini-3-pro-preview',
     config: {
       systemInstruction: `You are "Unit 01", the AI Dispatcher for Appliance Repair Clinic (Cool Doc) in Los Angeles. 

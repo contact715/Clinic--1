@@ -1,50 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cool Doc HVAC Service | Appliance Repair Clinic</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cool Doc HVAC Service | Appliance Repair Clinic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Custom scrollbar to hide it for a cleaner hero look if needed */
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+
+    /* Ripple Animation */
+    @keyframes rippling {
+      0% {
+        opacity: 1;
       }
-      /* Custom scrollbar to hide it for a cleaner hero look if needed */
-      ::-webkit-scrollbar {
-        width: 0px;
-        background: transparent;
+
+      100% {
+        transform: scale(2);
+        opacity: 0;
       }
-      
-      /* Ripple Animation */
-      @keyframes rippling {
-        0% {
-          opacity: 1;
-        }
-        100% {
-          transform: scale(2);
-          opacity: 0;
-        }
-      }
-      .animate-rippling {
-        animation: rippling var(--duration, 600ms) ease-out;
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0"
-  }
-}
-</script>
+    }
+
+    .animate-rippling {
+      animation: rippling var(--duration, 600ms) ease-out;
+    }
+  </style>
+
 </head>
-  <body>
-    <div id="root"></div>
-  </body>
+
+<body>
+  <div id="root" style="color: black; padding: 20px;">Loading...</div>
+  <script>
+    window.onerror = function (message, source, lineno, colno, error) {
+      const root = document.getElementById('root');
+      root.innerHTML += '<div style="color: red; background: #ffe6e6; padding: 10px; margin-top: 10px; border: 1px solid red;">' +
+        '<strong>Error:</strong> ' + message + '<br>' +
+        'Source: ' + source + ':' + lineno + ':' + colno + '<br>' +
+        (error && error.stack ? '<pre>' + error.stack + '</pre>' : '') +
+        '</div>';
+    };
+    window.addEventListener('unhandledrejection', function (event) {
+      const root = document.getElementById('root');
+      root.innerHTML += '<div style="color: red; background: #ffe6e6; padding: 10px; margin-top: 10px; border: 1px solid red;">' +
+        '<strong>Unhandled Promise Rejection:</strong> ' + event.reason +
+        '</div>';
+    });
+  </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
 </html>

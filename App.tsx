@@ -23,6 +23,7 @@ import { ChatBot } from './components/ChatBot';
 import { BlogSection } from './components/BlogSection';
 import { SEOContent } from './components/SEOContent';
 import { CostCalculator } from './components/CostCalculator';
+import { EmergencySection } from './components/EmergencySection';
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,12 +41,12 @@ const App: React.FC = () => {
   return (
     <>
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-      
+
       <div className={`relative w-full min-h-screen overflow-x-hidden bg-[#F4F6F8] text-[#1D1D1B] font-sans selection:bg-[#E30613] selection:text-white scroll-smooth ${isLoading ? 'h-screen overflow-hidden' : ''}`}>
-      
+
         {/* 1. Global Noise Overlay - Texture */}
-        <div className="fixed inset-0 z-[9999] pointer-events-none opacity-[0.03] mix-blend-overlay" 
-             style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")` }}>
+        <div className="fixed inset-0 z-[9999] pointer-events-none opacity-[0.03] mix-blend-overlay"
+          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")` }}>
         </div>
 
         {/* 2. Base Technical Grid (Static Grey) */}
@@ -54,41 +55,41 @@ const App: React.FC = () => {
         </div>
 
         {/* 3. GENERATIVE ART LAYER: "The Living Grid" */}
-        <div 
-            className="fixed inset-0 z-[1] pointer-events-none transition-opacity duration-500"
-            style={{
-                maskImage: 'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
-                WebkitMaskImage: 'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
-            }}
+        <div
+          className="fixed inset-0 z-[1] pointer-events-none transition-opacity duration-500"
+          style={{
+            maskImage: 'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
+            WebkitMaskImage: 'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
+          }}
         >
-            {/* The Aurora Gradient (Blue/Red/Yellow) - Parallax Movement - DIMMED */}
-            <div 
-                className="absolute inset-[-50%] bg-[conic-gradient(from_0deg_at_50%_50%,#1866B9_0deg,#E30613_120deg,#FDC506_240deg,#1866B9_360deg)] opacity-15 animate-spin-slower blur-3xl will-change-transform"
-                style={{ 
-                    transform: 'translate(calc(var(--mouse-x, 0) * -0.03px), calc(var(--mouse-y, 0) * -0.03px))' 
-                }}
-            ></div>
-            
-            {/* GRID LINE HIGHLIGHT - Explicitly highlights borders */}
-            <div 
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `linear-gradient(to_right, rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(to_bottom, rgba(255,255,255,0.8) 1px, transparent 1px)`,
-                backgroundSize: '40px 40px',
-                maskImage: 'radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
-                WebkitMaskImage: 'radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
-              }}
-            ></div>
-            
-            {/* Core Hotspot - Brighter white glow exactly at cursor */}
-            <div 
-                className="absolute w-[300px] h-[300px] bg-white/30 blur-[80px] rounded-full pointer-events-none mix-blend-overlay"
-                style={{ 
-                    left: 'var(--mouse-x)', 
-                    top: 'var(--mouse-y)', 
-                    transform: 'translate(-50%, -50%)' 
-                }}
-            ></div>
+          {/* The Aurora Gradient (Blue/Red/Yellow) - Parallax Movement - DIMMED */}
+          <div
+            className="absolute inset-[-50%] bg-[conic-gradient(from_0deg_at_50%_50%,#1866B9_0deg,#E30613_120deg,#FDC506_240deg,#1866B9_360deg)] opacity-15 animate-spin-slower blur-3xl will-change-transform"
+            style={{
+              transform: 'translate(calc(var(--mouse-x, 0) * -0.03px), calc(var(--mouse-y, 0) * -0.03px))'
+            }}
+          ></div>
+
+          {/* GRID LINE HIGHLIGHT - Explicitly highlights borders */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `linear-gradient(to_right, rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(to_bottom, rgba(255,255,255,0.8) 1px, transparent 1px)`,
+              backgroundSize: '40px 40px',
+              maskImage: 'radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
+              WebkitMaskImage: 'radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
+            }}
+          ></div>
+
+          {/* Core Hotspot - Brighter white glow exactly at cursor */}
+          <div
+            className="absolute w-[300px] h-[300px] bg-white/30 blur-[80px] rounded-full pointer-events-none mix-blend-overlay"
+            style={{
+              left: 'var(--mouse-x)',
+              top: 'var(--mouse-y)',
+              transform: 'translate(-50%, -50%)'
+            }}
+          ></div>
         </div>
 
         <LiveBookings />
@@ -98,29 +99,36 @@ const App: React.FC = () => {
         <Header />
 
         <section className="relative w-full min-h-[100vh] flex flex-col pt-32 md:pt-40 pb-20 overflow-hidden">
-          
+
           <Neighborhood videoUrl={null} />
 
           <div className="flex-grow flex flex-col justify-center px-6 md:px-12 lg:px-20 relative z-20">
             <div className="w-full max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-              
+
               <div className="lg:col-span-7 order-1 relative">
-                 {/* Decorative vertical line */}
-                 <div className="absolute -left-12 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden xl:block"></div>
-                 <HeroText />
+                {/* Decorative vertical line */}
+                <div className="absolute -left-12 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden xl:block"></div>
+                <HeroText />
               </div>
 
               <div id="quote" className="lg:col-span-5 order-2 relative h-auto flex items-center justify-center lg:justify-end perspective-1000">
-                  <HeroForm />
+                <HeroForm />
               </div>
 
             </div>
           </div>
 
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-50">
-              <div className="w-5 h-8 border-2 border-[#1D1D1B] rounded-full flex justify-center p-1">
-                  <div className="w-1 h-2 bg-[#E30613] rounded-full animate-scroll-dot"></div>
-              </div>
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-50 z-20">
+            <div className="w-5 h-8 border-2 border-[#1D1D1B] rounded-full flex justify-center p-1">
+              <div className="w-1 h-2 bg-[#E30613] rounded-full animate-scroll-dot"></div>
+            </div>
+          </div>
+
+          {/* Wave Separator - White Transition */}
+          <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10">
+            <svg className="relative block w-[calc(100%+1.3px)] h-[60px] md:h-[100px]" style={{ transform: 'scaleX(-1)' }} data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="fill-[#F4F6F8]"></path>
+            </svg>
           </div>
         </section>
 
@@ -136,10 +144,12 @@ const App: React.FC = () => {
         <WhyChooseUs />
         <WarrantySection />
         <ServiceMap />
+
+        <EmergencySection />
         <BlogSection />
         <SEOContent />
         <Footer />
-        
+
         <style>{`
           @keyframes scroll-dot {
               0% { transform: translateY(0); opacity: 1; }
