@@ -1,0 +1,15 @@
+export const PHONE_RAW = '8187310445';
+export const PHONE_DISPLAY = '(818) 731-0445';
+export const PHONE_HREF = 'tel:8187310445';
+export const BUSINESS_NAME = 'Cool Doc HVAC Service';
+export const BUSINESS_EMAIL = 'info@cooldochvac.com';
+export const BUSINESS_ADDRESS = 'San Fernando Valley, CA';
+export const SERVICE_AREA = 'San Fernando Valley, Los Angeles County';
+export const FOUNDED_YEAR = '2010';
+export const WARRANTY_DAYS = '90';
+export const GOOGLE_RATING = '4.9';
+export const REVIEW_COUNT = '2,300+';
+export const CSLB_LICENSE = '#1089805';
+export const CSLB_CLASS = 'C-20';
+export const EAR_NUMBER = '48982';
+export const BUSINESS_ADDRESS_FULL = '18601 Hatteras St., #229, Tarzana, CA 91356';

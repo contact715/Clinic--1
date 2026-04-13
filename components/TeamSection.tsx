@@ -5,46 +5,46 @@ import { ShieldCheck, Star } from 'lucide-react';
 export const TeamSection: React.FC = () => {
   const team = [
     {
-      id: "UNIT-01",
+      id: "HVAC-01",
       name: "Alex Richardson",
-      role: "Founder & Chief Tech",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
-      specialty: "High-End Refrigeration",
-      exp: "23 Years",
+      role: "Founder & Lead Tech",
+      image: "/generated/team-hvac-alex.jpg",
+      specialty: "AC Systems & Refrigerant",
+      exp: "15 Years",
     },
     {
-      id: "HQ-LEAD",
+      id: "HQ-DISP",
       name: "Sarah Jenkins",
-      role: "Head of Dispatch",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
-      specialty: "Logistics & Support",
+      role: "Service Coordinator",
+      image: "/generated/team-hvac-sarah.jpg",
+      specialty: "Scheduling & Customer Care",
+      exp: "8 Years",
+    },
+    {
+      id: "HVAC-04",
+      name: "Mike Thompson",
+      role: "Senior HVAC Technician",
+      image: "/generated/team-hvac-mike.jpg",
+      specialty: "Furnaces & Heat Pumps",
       exp: "12 Years",
     },
     {
-      id: "UNIT-04",
-      name: "Mike Thompson",
-      role: "Senior Technician",
-      image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=800",
-      specialty: "Gas & Electric Ranges",
-      exp: "18 Years",
-    },
-    {
-      id: "UNIT-09",
+      id: "HVAC-09",
       name: "David Lee",
-      role: "Field Specialist",
-      image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800",
-      specialty: "Laundry Systems",
-      exp: "9 Years",
+      role: "Ductless Specialist",
+      image: "/generated/team-hvac-david.jpg",
+      specialty: "Mini-Splits & VRF Systems",
+      exp: "7 Years",
     }
   ];
 
   return (
     <section className="py-24 bg-[#F4F6F8] relative z-20 border-t border-white/50">
-      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
         
         <div className="mb-16 flex flex-col md:flex-row justify-between items-end">
             <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white border border-gray-200 text-[#1D1D1B] font-bold text-[10px] tracking-widest uppercase mb-4 shadow-sm">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-gray-200 text-[#1D1D1B] font-bold text-[10px] tracking-widest uppercase mb-4 shadow-sm">
                     <ShieldCheck size={12} className="text-[#E30613]" />
                     Personnel Roster
                 </div>
@@ -72,14 +72,14 @@ export const TeamSection: React.FC = () => {
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0"
                         />
                         <div className="absolute top-4 left-4">
-                            <div className="bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-black text-[#1D1D1B] uppercase tracking-widest shadow-sm border border-white/50">
+                            <div className="bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-[10px] font-black text-[#1D1D1B] uppercase tracking-widest shadow-sm border border-white/50">
                                 {member.id}
                             </div>
                         </div>
                         
                         {/* Floating Name on Image */}
                         <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
-                            <div className="bg-[#E30613] px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide w-fit mb-1 shadow-sm">
+                            <div className="bg-[#E30613] px-2 py-1 rounded-lg text-[9px] font-bold uppercase tracking-wide w-fit mb-1 shadow-sm">
                                 {member.role}
                             </div>
                             <h3 className="text-2xl font-[900] uppercase leading-none tracking-tight">{member.name}</h3>

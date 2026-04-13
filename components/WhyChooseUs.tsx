@@ -51,22 +51,22 @@ export const WhyChooseUs: React.FC = () => {
           ></div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Header Area */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#E30613]/10 border border-[#E30613]/20 text-[#E30613] font-bold text-[10px] tracking-widest uppercase mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E30613]/10 border border-[#E30613]/20 text-[#E30613] font-bold text-[10px] tracking-widest uppercase mb-6">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#E30613] animate-pulse"></div>
                     System Advantages
                 </div>
                 <h2 className="text-5xl md:text-7xl font-[900] text-white tracking-tighter leading-[0.9]">
-                    THE <span className="text-[#E30613]">CLINIC</span><br/>
-                    STANDARD.
+                    WHY 2,300 <span className="text-[#E30613]">FAMILIES</span><br/>
+                    CALL US FIRST
                 </h2>
             </div>
             <p className="text-gray-400 text-sm md:text-base font-medium max-w-md text-right">
-                We don't just repair appliances; we restore order to your home through precision, speed, and absolute transparency.
+                Your appliance breaks at the worst time. Here's what you get when you call us:
             </p>
         </div>
 
@@ -74,12 +74,12 @@ export const WhyChooseUs: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             {/* MODULE 01: EXPERTISE (Blue) */}
-            <div className="group relative bg-[#1A1A1A] rounded-[2rem] p-8 md:p-12 border border-white/10 overflow-hidden hover:border-[#1866B9]/50 transition-all duration-500">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#1866B9]/10 rounded-bl-[3rem] transition-all duration-500 group-hover:scale-150 origin-top-right"></div>
+            <div className="group relative bg-[#1A1A1A] rounded-3xl p-8 md:p-12 border border-white/10 overflow-hidden hover:border-[#1866B9]/50 transition-all duration-500">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#1866B9]/10 rounded-bl-3xl transition-all duration-500 group-hover:scale-150 origin-top-right"></div>
                 
                 <div className="relative z-10">
                     <div className="flex justify-between items-start mb-8">
-                        <div className="w-14 h-14 bg-[#1866B9] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-[#1866B9]/20 group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-12 h-12 bg-[#1866B9] rounded-xl flex items-center justify-center text-white shadow-lg shadow-[#1866B9]/20 group-hover:scale-110 transition-transform duration-300">
                             <UserCheck size={28} />
                         </div>
                         <span className="text-6xl font-[900] text-white/5 group-hover:text-[#1866B9]/20 transition-colors">01</span>
@@ -87,7 +87,7 @@ export const WhyChooseUs: React.FC = () => {
                     
                     <h3 className="text-3xl font-[900] text-white mb-4 uppercase italic tracking-tight">Elite Techs</h3>
                     <p className="text-gray-400 font-medium leading-relaxed mb-8">
-                        Factory-trained, background-checked, and licensed. We only hire the top 1% of applicants.
+                        Every tech is factory-trained, background-checked, and licensed. You get someone who actually knows your appliance, not a generalist with a screwdriver.
                     </p>
 
                     {/* Interactive Element: ID Badge */}
@@ -105,12 +105,12 @@ export const WhyChooseUs: React.FC = () => {
             </div>
 
             {/* MODULE 02: SPEED (Yellow) */}
-            <div className="group relative bg-[#1A1A1A] rounded-[2rem] p-8 md:p-12 border border-white/10 overflow-hidden hover:border-[#FDC506]/50 transition-all duration-500">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FDC506]/10 rounded-bl-[3rem] transition-all duration-500 group-hover:scale-150 origin-top-right"></div>
+            <div className="group relative bg-[#1A1A1A] rounded-3xl p-8 md:p-12 border border-white/10 overflow-hidden hover:border-[#FDC506]/50 transition-all duration-500">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FDC506]/10 rounded-bl-3xl transition-all duration-500 group-hover:scale-150 origin-top-right"></div>
                 
                 <div className="relative z-10">
                     <div className="flex justify-between items-start mb-8">
-                        <div className="w-14 h-14 bg-[#FDC506] rounded-2xl flex items-center justify-center text-[#1D1D1B] shadow-lg shadow-[#FDC506]/20 group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-12 h-12 bg-[#FDC506] rounded-xl flex items-center justify-center text-[#1D1D1B] shadow-lg shadow-[#FDC506]/20 group-hover:scale-110 transition-transform duration-300">
                             <Zap size={28} className="fill-[#1D1D1B]" />
                         </div>
                         <span className="text-6xl font-[900] text-white/5 group-hover:text-[#FDC506]/20 transition-colors">02</span>
@@ -118,7 +118,7 @@ export const WhyChooseUs: React.FC = () => {
                     
                     <h3 className="text-3xl font-[900] text-white mb-4 uppercase italic tracking-tight">Rapid Response</h3>
                     <p className="text-gray-400 font-medium leading-relaxed mb-8">
-                        Trucks stocked with OEM parts for Same-Day fixes. We value your time as much as you do.
+                        Trucks are stocked with OEM parts so the repair happens today, not after a parts order arrives in a week.
                     </p>
 
                     {/* Interactive Element: Progress Bar */}
@@ -135,12 +135,12 @@ export const WhyChooseUs: React.FC = () => {
             </div>
 
             {/* MODULE 03: WARRANTY (Red) */}
-            <div className="group relative bg-[#1A1A1A] rounded-[2rem] p-8 md:p-12 border border-white/10 overflow-hidden hover:border-[#E30613]/50 transition-all duration-500">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#E30613]/10 rounded-bl-[3rem] transition-all duration-500 group-hover:scale-150 origin-top-right"></div>
+            <div className="group relative bg-[#1A1A1A] rounded-3xl p-8 md:p-12 border border-white/10 overflow-hidden hover:border-[#E30613]/50 transition-all duration-500">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#E30613]/10 rounded-bl-3xl transition-all duration-500 group-hover:scale-150 origin-top-right"></div>
                 
                 <div className="relative z-10">
                     <div className="flex justify-between items-start mb-8">
-                        <div className="w-14 h-14 bg-[#E30613] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-[#E30613]/20 group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-12 h-12 bg-[#E30613] rounded-xl flex items-center justify-center text-white shadow-lg shadow-[#E30613]/20 group-hover:scale-110 transition-transform duration-300">
                             <ShieldCheck size={28} />
                         </div>
                         <span className="text-6xl font-[900] text-white/5 group-hover:text-[#E30613]/20 transition-colors">03</span>
@@ -148,15 +148,15 @@ export const WhyChooseUs: React.FC = () => {
                     
                     <h3 className="text-3xl font-[900] text-white mb-4 uppercase italic tracking-tight">Ironclad Warranty</h3>
                     <p className="text-gray-400 font-medium leading-relaxed mb-8">
-                        90-Day coverage on parts and labor. If it fails again, we fix it for free. Zero risk.
+                        90-day coverage on parts and labor. If the same issue comes back, it gets fixed at no cost to you. Zero risk.
                     </p>
 
                     {/* Interactive Element: Shield Status */}
                     <div className="flex items-center gap-3">
-                        <div className="px-4 py-2 rounded-lg bg-black/30 border border-white/10 text-xs font-bold text-gray-400 group-hover:text-white group-hover:border-[#E30613] transition-colors">
+                        <div className="px-4 py-2 rounded-xl bg-black/30 border border-white/10 text-xs font-bold text-gray-400 group-hover:text-white group-hover:border-[#E30613] transition-colors">
                             Parts Covered
                         </div>
-                        <div className="px-4 py-2 rounded-lg bg-black/30 border border-white/10 text-xs font-bold text-gray-400 group-hover:text-white group-hover:border-[#E30613] transition-colors delay-75">
+                        <div className="px-4 py-2 rounded-xl bg-black/30 border border-white/10 text-xs font-bold text-gray-400 group-hover:text-white group-hover:border-[#E30613] transition-colors delay-75">
                             Labor Covered
                         </div>
                     </div>
@@ -164,12 +164,12 @@ export const WhyChooseUs: React.FC = () => {
             </div>
 
             {/* MODULE 04: TRANSPARENCY (White) */}
-            <div className="group relative bg-[#1A1A1A] rounded-[2rem] p-8 md:p-12 border border-white/10 overflow-hidden hover:border-white/50 transition-all duration-500">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-[3rem] transition-all duration-500 group-hover:scale-150 origin-top-right"></div>
+            <div className="group relative bg-[#1A1A1A] rounded-3xl p-8 md:p-12 border border-white/10 overflow-hidden hover:border-white/50 transition-all duration-500">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-3xl transition-all duration-500 group-hover:scale-150 origin-top-right"></div>
                 
                 <div className="relative z-10">
                     <div className="flex justify-between items-start mb-8">
-                        <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-[#1D1D1B] shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#1D1D1B] shadow-lg group-hover:scale-110 transition-transform duration-300">
                             <Search size={28} />
                         </div>
                         <span className="text-6xl font-[900] text-white/5 group-hover:text-white/20 transition-colors">04</span>
@@ -177,7 +177,7 @@ export const WhyChooseUs: React.FC = () => {
                     
                     <h3 className="text-3xl font-[900] text-white mb-4 uppercase italic tracking-tight">Flat-Rate Pricing</h3>
                     <p className="text-gray-400 font-medium leading-relaxed mb-8">
-                        No hourly billing games. You get a solid quote for the job before we lift a wrench.
+                        No hourly billing games. You get a flat quote for the job before anything is touched. What you're told is what you pay.
                     </p>
 
                     {/* Interactive Element: Receipt Scan */}
@@ -194,7 +194,7 @@ export const WhyChooseUs: React.FC = () => {
 
         {/* CTA Bar */}
         <div className="mt-16 flex justify-center">
-            <a href="#quote" className="group flex items-center gap-4 px-8 py-4 rounded-xl bg-[#E30613] text-white font-[900] uppercase tracking-widest hover:bg-white hover:text-[#1D1D1B] transition-all duration-300 shadow-[0_0_30px_-5px_rgba(227,6,19,0.5)] hover:shadow-white/20">
+            <a href="#quote" className="group flex items-center gap-4 px-8 py-4 rounded-xl bg-[#E30613] text-white font-bold hover:bg-white hover:text-[#1D1D1B] transition-all duration-300 shadow-[0_0_30px_-5px_rgba(227,6,19,0.5)] hover:shadow-white/20">
                 <span>Experience The Difference</span>
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </a>

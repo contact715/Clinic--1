@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { MapPin, ArrowRight, CheckCircle2, Navigation } from 'lucide-react';
+import { MapPin, ArrowRight } from 'lucide-react';
 
 export const ServiceMap: React.FC = () => {
   const neighborhoods = [
@@ -11,12 +11,12 @@ export const ServiceMap: React.FC = () => {
 
   return (
     <section className="py-24 bg-white relative z-20 border-t border-gray-100" id="service-map">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
         
-        <div className="bg-[#F8FAFC] rounded-[3rem] overflow-hidden border border-gray-200 shadow-2xl flex flex-col lg:flex-row relative group">
+        <div className="bg-[#F8FAFC] rounded-3xl overflow-hidden border border-gray-200 shadow-2xl flex flex-col lg:flex-row relative group">
             
             {/* Left Side: Content */}
-            <div className="lg:w-[40%] p-10 md:p-16 flex flex-col justify-center relative z-10 bg-white lg:bg-transparent">
+            <div className="lg:w-[40%] p-8 md:p-12 flex flex-col justify-center relative z-10 bg-white lg:bg-transparent">
                  
                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1866B9]/10 border border-[#1866B9]/20 text-[#1866B9] font-bold text-[10px] tracking-widest uppercase mb-8 w-fit">
                     <MapPin size={12} />
@@ -28,7 +28,7 @@ export const ServiceMap: React.FC = () => {
                  </h2>
                  
                  <p className="text-gray-500 font-medium mb-10 text-lg leading-relaxed">
-                    Our technicians are stationed strategically throughout the valley and greater LA area for rapid, same-day response times.
+                    We cover 10 cities across the San Fernando Valley and LA County. Call before noon for same-day service.
                  </p>
                  
                  <div className="grid grid-cols-2 gap-x-4 gap-y-4 mb-12">
@@ -44,7 +44,7 @@ export const ServiceMap: React.FC = () => {
                     <input 
                         type="text" 
                         placeholder="Enter your Zip Code" 
-                        className="w-full bg-white border-2 border-gray-100 rounded-2xl py-4 pl-6 pr-16 text-[#1D1D1B] font-bold focus:outline-none focus:border-[#1866B9] focus:ring-4 focus:ring-[#1866B9]/10 transition-all shadow-sm placeholder:text-gray-400 placeholder:font-medium"
+                        className="w-full bg-white border-2 border-gray-100 rounded-xl py-4 pl-6 pr-16 text-[#1D1D1B] font-bold focus:outline-none focus:border-[#1866B9] focus:ring-2 focus:ring-[#1866B9]/20 transition-all shadow-sm placeholder:text-gray-400 placeholder:font-medium"
                     />
                     <button className="absolute right-2 top-2 bottom-2 aspect-square bg-[#1D1D1B] rounded-xl flex items-center justify-center text-white hover:bg-[#E30613] transition-colors shadow-md hover:scale-105 active:scale-95 transform duration-200">
                         <ArrowRight size={20} />
@@ -72,22 +72,14 @@ export const ServiceMap: React.FC = () => {
                 {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#F8FAFC] via-transparent to-transparent opacity-80 lg:opacity-0 pointer-events-none"></div>
 
-                {/* Floating Status Card */}
-                <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-md border border-white/50 p-4 rounded-2xl shadow-xl animate-float hidden sm:block">
+                {/* Coverage Badge */}
+                <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-md border border-white/50 p-4 rounded-2xl shadow-xl hidden sm:block">
                     <div className="flex items-center gap-3 mb-2">
-                        <div className="relative">
-                            <div className="w-3 h-3 bg-[#00B67A] rounded-full"></div>
-                            <div className="absolute inset-0 bg-[#00B67A] rounded-full animate-ping opacity-50"></div>
-                        </div>
-                        <span className="text-xs font-black text-[#1D1D1B] uppercase tracking-wide">Live Dispatch</span>
+                        <MapPin size={14} className="text-[#1866B9]" />
+                        <span className="text-xs font-black text-[#1D1D1B] uppercase tracking-wide">Coverage Area</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                         <div className="w-8 h-8 bg-[#1866B9]/10 rounded-full flex items-center justify-center text-[#1866B9]">
-                            <Navigation size={14} className="rotate-45" />
-                         </div>
-                         <div className="text-sm font-bold text-gray-600 leading-tight">
-                            <span className="text-[#1866B9]">12 Techs</span> active<br/>in your area
-                         </div>
+                    <div className="text-sm font-bold text-gray-600 leading-tight">
+                        <span className="text-[#1866B9]">10 cities</span> across<br/>San Fernando Valley
                     </div>
                 </div>
 

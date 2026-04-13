@@ -32,11 +32,11 @@ export const BlogSection: React.FC = () => {
 
   return (
     <section className="py-24 bg-white relative z-20 border-t border-gray-100">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
         
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-gray-100 border border-gray-200 text-[#1D1D1B] font-bold text-[10px] tracking-widest uppercase mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 border border-gray-200 text-[#1D1D1B] font-bold text-[10px] tracking-widest uppercase mb-4">
                     <Tag size={12} />
                     Knowledge Base
                 </div>

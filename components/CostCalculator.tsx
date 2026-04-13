@@ -54,7 +54,7 @@ export const CostCalculator: React.FC = () => {
           ></div>
       </div>
 
-      <div className="max-w-[1000px] mx-auto px-6 relative z-10">
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 relative z-10">
         
         <div className="bg-white rounded-2xl shadow-2xl border-4 border-white overflow-hidden flex flex-col md:flex-row relative">
             
@@ -62,7 +62,7 @@ export const CostCalculator: React.FC = () => {
             <div className="bg-[#E30613] p-10 md:w-2/5 text-white flex flex-col justify-between relative overflow-hidden">
                 <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(0,0,0,0.1)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]"></div>
                 <div className="relative z-10">
-                    <div className="w-14 h-14 bg-[#1D1D1B] rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_rgba(0,0,0,0.3)] border-2 border-white/20">
+                    <div className="w-12 h-12 bg-[#1D1D1B] rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_rgba(0,0,0,0.3)] border-2 border-white/20">
                         <Calculator size={28} className="text-white" />
                     </div>
                     <h3 className="text-3xl font-[900] uppercase tracking-tighter leading-none mb-4">Repair Cost<br/>Estimator</h3>
@@ -71,7 +71,7 @@ export const CostCalculator: React.FC = () => {
                     </p>
                 </div>
                 <div className="mt-10 relative z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#1D1D1B] rounded-lg border border-white/20 shadow-lg">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#1D1D1B] rounded-full border border-white/20 shadow-lg">
                         <Check size={14} className="text-[#00B67A]" strokeWidth={4} /> 
                         <span className="text-[10px] font-black uppercase tracking-widest text-white">No Hidden Fees</span>
                     </div>
@@ -91,7 +91,7 @@ export const CostCalculator: React.FC = () => {
                                 <button 
                                     key={app}
                                     onClick={() => { setAppliance(app); setStep(2); }}
-                                    className="py-4 px-4 rounded-xl bg-white border-2 border-[#1D1D1B]/10 text-sm font-[800] text-[#1D1D1B] shadow-sm hover:border-[#E30613] hover:text-[#E30613] hover:shadow-[0_10px_20px_-5px_rgba(227,6,19,0.15)] hover:-translate-y-1 transition-all duration-300 text-center"
+                                    className="py-3 px-4 rounded-xl bg-white border-2 border-[#1D1D1B]/10 text-sm font-bold text-[#1D1D1B] shadow-sm hover:border-[#E30613] hover:text-[#E30613] hover:shadow-[0_10px_20px_-5px_rgba(227,6,19,0.15)] hover:-translate-y-1 transition-all duration-300 text-center"
                                 >
                                     {app}
                                 </button>
@@ -123,10 +123,10 @@ export const CostCalculator: React.FC = () => {
                         </div>
 
                         <div className="flex gap-4">
-                            <button onClick={() => setStep(1)} className="px-6 py-4 rounded-xl border-2 border-[#1D1D1B]/20 text-[#1D1D1B] font-[800] text-sm hover:bg-gray-200 transition-colors">
+                            <button onClick={() => setStep(1)} className="px-6 py-3 rounded-xl border-2 border-[#1D1D1B]/20 text-[#1D1D1B] font-bold text-sm hover:bg-gray-200 transition-colors">
                                 Back
                             </button>
-                            <a href="#quote" className="flex-1 py-4 rounded-xl bg-[#E30613] text-white font-[900] text-sm flex items-center justify-center gap-2 hover:bg-[#C20510] shadow-lg hover:shadow-red-600/30 transition-all hover:-translate-y-0.5 uppercase tracking-wide">
+                            <a href="#quote" className="flex-1 py-4 rounded-xl bg-[#E30613] text-white font-bold text-sm flex items-center justify-center gap-2 hover:bg-[#C20510] shadow-lg hover:shadow-red-600/30 transition-all hover:-translate-y-0.5 uppercase tracking-wide">
                                 Get Exact Quote <ArrowRight size={18} strokeWidth={3} />
                             </a>
                         </div>

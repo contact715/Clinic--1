@@ -1,55 +1,94 @@
 
 import React from 'react';
 
-export const SEOContent: React.FC = () => {
-  return (
-    <section className="py-20 bg-[#F8FAFC] border-t border-gray-200 relative z-20">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            
-            <div className="prose prose-sm max-w-none text-gray-500">
-                <h3 className="text-[#1D1D1B] font-[900] text-xl uppercase tracking-tight mb-4">
-                    Premium Appliance Repair in Los Angeles
-                </h3>
-                <p>
-                    When your household appliances break down, you need a reliable partner who understands the urgency of the situation. 
-                    <strong>Cool Doc Appliance Repair Clinic</strong> is the leading provider of high-quality diagnostic and repair services 
-                    throughout the Greater Los Angeles area, including the San Fernando Valley, Beverly Hills, and Santa Monica. 
-                    Since 1996, we have specialized in restoring the functionality of premium kitchen and laundry machines.
-                </p>
-                <p className="mt-4">
-                    Our team of factory-trained technicians is equipped to handle all major brands, including 
-                    <em>Sub-Zero, Wolf, Viking, Thermador, Miele, Samsung, LG, and Whirlpool</em>. Whether you are dealing with a 
-                    refrigerator not cooling, a washing machine not spinning, or an oven that won't heat, our "clinic" approach ensures 
-                    a precise diagnosis followed by a surgical repair using only OEM parts.
-                </p>
-            </div>
+export const SEOContent: React.FC = () => (
+  <section className="py-20 bg-[#F8F9FA] border-t border-gray-200">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
 
-            <div className="prose prose-sm max-w-none text-gray-500">
-                <h3 className="text-[#1D1D1B] font-[900] text-xl uppercase tracking-tight mb-4">
-                    Why We Are The Top Choice
-                </h3>
-                <ul className="list-disc pl-5 space-y-2 marker:text-[#E30613]">
-                    <li>
-                        <strong>Same-Day Emergency Service:</strong> We understand that a broken freezer or leaking dishwasher is an emergency. 
-                        Our dispatch system prioritizes urgent calls to get a technician to your door within hours.
-                    </li>
-                    <li>
-                        <strong>Transparent Flat-Rate Pricing:</strong> Unlike other companies that charge by the hour, we provide a flat-rate quote 
-                        for the entire job before we start. You will never be surprised by hidden fees.
-                    </li>
-                    <li>
-                        <strong>90-Day Parts & Labor Warranty:</strong> We stand behind our craftsmanship. Every repair comes with a solid 90-day guarantee 
-                        for your peace of mind.
-                    </li>
-                </ul>
-                <p className="mt-4 text-xs font-bold uppercase tracking-wide text-[#1D1D1B]">
-                    Servicing: Sherman Oaks (91403, 91423), Studio City (91604), Encino (91316, 91436), Tarzana (91356), and beyond.
-                </p>
-            </div>
-
-        </div>
+      <div className="mb-12">
+        <h2 className="text-3xl md:text-4xl font-[900] text-[#1D1D1B] tracking-tight mb-3">
+          HVAC Service Across San Fernando Valley
+        </h2>
+        <p className="text-gray-500 text-lg max-w-2xl">
+          Cool Doc HVAC has been working in this valley since 2010. Below is a quick overview of what we do and where we go.
+        </p>
       </div>
-    </section>
-  );
-};
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+        <div className="space-y-8">
+          <div>
+            <h3 className="text-lg font-bold text-[#1D1D1B] mb-2">AC Repair in San Fernando Valley</h3>
+            <p className="text-gray-600 leading-relaxed text-sm">
+              Most AC calls we get are refrigerant leaks, frozen coils, failed compressors, or a clogged condenser that just needs a good cleaning. We carry parts on the truck so the job usually gets done in one visit. If we can't fix it, you don't pay.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-bold text-[#1D1D1B] mb-2">Heating and Furnace Repair — Los Angeles</h3>
+            <p className="text-gray-600 leading-relaxed text-sm">
+              We work on gas furnaces, electric systems, heat pumps, and boilers. When fall hits and the furnace won't kick on, call before noon and we'll usually get someone out same day. Licensed C-20 contractor, fully insured.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-bold text-[#1D1D1B] mb-2">Ductless Mini-Split Installation</h3>
+            <p className="text-gray-600 leading-relaxed text-sm">
+              Mini-splits are the right call for garages, additions, older homes without ductwork, and rooms that never seem to cool down. We install and service Mitsubishi, Daikin, Fujitsu, LG, and most other brands.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-bold text-[#1D1D1B] mb-2">HVAC Maintenance Plans</h3>
+            <p className="text-gray-600 leading-relaxed text-sm">
+              A yearly tune-up costs a fraction of what a single repair call does. We offer one-time appointments and annual plans. We check refrigerant levels, clean coils, inspect the heat exchanger, and test everything before summer or winter hits.
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-8">
+          <div>
+            <h3 className="text-lg font-bold text-[#1D1D1B] mb-2">Cities We Serve</h3>
+            <p className="text-gray-600 leading-relaxed text-sm mb-4">
+              We cover the San Fernando Valley and surrounding areas. Our techs work out of the valley, so response times are fast.
+            </p>
+            <ul className="grid grid-cols-2 gap-y-2 gap-x-4 text-sm text-gray-700 font-medium">
+              {[
+                'Tarzana',
+                'Woodland Hills',
+                'Encino',
+                'Sherman Oaks',
+                'Studio City',
+                'Burbank',
+                'North Hollywood',
+                'Van Nuys',
+                'Northridge',
+                'Glendale',
+              ].map(city => (
+                <li key={city} className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#E30613] shrink-0"></span>
+                  {city}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-bold text-[#1D1D1B] mb-2">Our Guarantee</h3>
+            <p className="text-gray-600 leading-relaxed text-sm">
+              Every repair carries a 90-day warranty on parts and labor. If we come out and can't fix the problem, you don't owe us anything. Pricing is given upfront before we start, so there are no surprises on the bill.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl border border-gray-200 p-6">
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Cool Doc HVAC Service — Licensed HVAC Contractor, San Fernando Valley, CA. CSLB License #1089805.
+              Call <a href="tel:8187310445" className="text-[#1D1D1B] font-bold hover:text-[#E30613] transition-colors">(818) 731-0445</a> for service or a free estimate.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+);

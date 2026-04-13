@@ -1,181 +1,298 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
-import { HeroText } from './components/HeroText';
-import { HeroForm } from './components/HeroForm';
-import { Neighborhood } from './components/Neighborhood';
-import { ReviewBar } from './components/ReviewBar';
-import { ServicesSection } from './components/ServicesSection';
-import { Brands } from './components/Brands';
-import { DetailedServices } from './components/DetailedServices';
-import { WarrantySection } from './components/WarrantySection';
-import { Process } from './components/Process';
-import { Testimonials } from './components/Testimonials';
-import { TeamSection } from './components/TeamSection';
-import { FAQ } from './components/FAQ';
-import { ServiceMap } from './components/ServiceMap';
 import { Footer } from './components/Footer';
-import { LiveBookings } from './components/LiveBookings';
-import { ExitModal } from './components/ExitModal';
-import { Preloader } from './components/Preloader';
-import { WhyChooseUs } from './components/WhyChooseUs';
 import { ChatBot } from './components/ChatBot';
-import { BlogSection } from './components/BlogSection';
-import { SEOContent } from './components/SEOContent';
-import { CostCalculator } from './components/CostCalculator';
-import { EmergencySection } from './components/EmergencySection';
+import { CookieConsent } from './components/CookieConsent';
+import { StickyMobileCTA } from './components/StickyMobileCTA';
+import { DiscoveryQuiz } from './components/DiscoveryQuiz';
+import { WhatsAppButton } from './components/WhatsAppButton';
+import { Breadcrumbs } from './components/Breadcrumbs';
+import { ScrollProgress } from './components/ScrollProgress';
+
+const HomePage = lazy(() => import('./components/pages/HomePage').then(m => ({ default: m.HomePage })));
+const ResidentialPage = lazy(() => import('./components/pages/ResidentialPage').then(m => ({ default: m.ResidentialPage })));
+const CommercialPage = lazy(() => import('./components/pages/CommercialPage').then(m => ({ default: m.CommercialPage })));
+const ServicePage = lazy(() => import('./components/pages/ServicePage').then(m => ({ default: m.ServicePage })));
+const AboutPage = lazy(() => import('./components/pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const ContactPage = lazy(() => import('./components/pages/ContactPage').then(m => ({ default: m.ContactPage })));
+const CityPage = lazy(() => import('./components/pages/CityPage').then(m => ({ default: m.CityPage })));
+const NotFoundPage = lazy(() => import('./components/pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
+const BlogPage = lazy(() => import('./components/pages/BlogPage').then(m => ({ default: m.BlogPage })));
+const FAQPage = lazy(() => import('./components/pages/FAQPage').then(m => ({ default: m.FAQPage })));
+const FinancingPage = lazy(() => import('./components/pages/FinancingPage').then(m => ({ default: m.FinancingPage })));
+const SpecialsPage = lazy(() => import('./components/pages/SpecialsPage').then(m => ({ default: m.SpecialsPage })));
+const LicensesPage = lazy(() => import('./components/pages/LicensesPage').then(m => ({ default: m.LicensesPage })));
+const ReviewsPage = lazy(() => import('./components/pages/ReviewsPage').then(m => ({ default: m.ReviewsPage })));
+const PrivacyPage = lazy(() => import('./components/pages/PrivacyPage').then(m => ({ default: m.PrivacyPage })));
+const TermsPage = lazy(() => import('./components/pages/TermsPage').then(m => ({ default: m.TermsPage })));
+const BlogArticlePage = lazy(() => import('./components/pages/BlogArticlePage').then(m => ({ default: m.BlogArticlePage })));
+const CareersPage = lazy(() => import('./components/pages/CareersPage').then(m => ({ default: m.CareersPage })));
+const SitemapPage = lazy(() => import('./components/pages/SitemapPage').then(m => ({ default: m.SitemapPage })));
+const MembershipPage = lazy(() => import('./components/pages/MembershipPage').then(m => ({ default: m.MembershipPage })));
+const PricingPage = lazy(() => import('./components/pages/PricingPage').then(m => ({ default: m.PricingPage })));
+const AccessibilityPage = lazy(() => import('./components/pages/AccessibilityPage').then(m => ({ default: m.AccessibilityPage })));
+const CookiePolicyPage = lazy(() => import('./components/pages/CookiePolicyPage').then(m => ({ default: m.CookiePolicyPage })));
+const DoNotSellPage = lazy(() => import('./components/pages/DoNotSellPage').then(m => ({ default: m.DoNotSellPage })));
+
+
+export type NavigateFn = (path: string) => void;
+
+const PAGE_META: Record<string, string> = {
+  home: 'Cool Doc HVAC Service — same-day AC repair, heating, and ductless mini-split service across San Fernando Valley. Licensed, insured. No fix, no fee. Call (818) 731-0445.',
+  residential: 'Residential HVAC service in San Fernando Valley. AC repair, furnace repair, ductless installation. Family-owned since 2010. 90-day warranty. (818) 731-0445.',
+  commercial: 'Commercial HVAC service in Los Angeles. Rooftop units, maintenance contracts, 24/7 emergency. All brands. Fast response. Cool Doc HVAC (818) 731-0445.',
+  'ac-repair': 'AC repair in San Fernando Valley — same-day service, all brands. Refrigerant leaks, compressor failure, frozen coils. No fix, no fee. Call (818) 731-0445.',
+  heating: 'Furnace and heating repair in Los Angeles. Gas furnaces, heat pumps, electric systems. Fast diagnosis, honest pricing. Cool Doc HVAC (818) 731-0445.',
+  maintenance: 'HVAC maintenance plans in San Fernando Valley. Annual tune-ups, filter changes, system checks. Prevent breakdowns. Cool Doc HVAC (818) 731-0445.',
+  ductless: 'Ductless mini-split installation and repair in Los Angeles. Mitsubishi, Daikin, Fujitsu, LG. Expert installation. Cool Doc HVAC (818) 731-0445.',
+  'hvac-installation': 'HVAC system installation in San Fernando Valley. All major brands, proper sizing, warranty. Cool Doc HVAC — licensed CSLB contractor. (818) 731-0445.',
+  'heat-pump': 'Heat pump repair and installation in Los Angeles. Energy-efficient heating and cooling. All brands serviced. Cool Doc HVAC (818) 731-0445.',
+  'air-quality': 'Indoor air quality solutions in San Fernando Valley. HEPA filters, UV-C purifiers, duct sealing. Breathe cleaner air. Cool Doc HVAC (818) 731-0445.',
+  about: 'About Cool Doc HVAC — family-owned HVAC company serving San Fernando Valley since 2010. Licensed, insured, 2,300+ five-star reviews.',
+  contact: 'Contact Cool Doc HVAC. Book same-day service online or call (818) 731-0445. Serving San Fernando Valley and Los Angeles County.',
+  blog: 'HVAC tips, guides, and maintenance advice from Cool Doc HVAC. San Fernando Valley homeowners and business owners.',
+  faq: 'Frequently asked questions about HVAC repair, maintenance, and installation in San Fernando Valley. Cool Doc HVAC answers.',
+  financing: 'HVAC financing options in San Fernando Valley. 0% APR plans, low monthly payments. Synchrony and GreenSky. Cool Doc HVAC (818) 731-0445.',
+  specials: 'Current HVAC deals and discounts in San Fernando Valley. $79 tune-ups, diagnostic specials, new customer offers. Cool Doc HVAC.',
+  licenses: 'Cool Doc HVAC is licensed (CSLB), EPA 608 certified, NATE certified, and fully insured. Verify our credentials.',
+  reviews: '4.9-star rated HVAC company in San Fernando Valley. 2,300+ verified reviews on Google, Yelp, and Facebook. Cool Doc HVAC.',
+  privacy: 'Privacy policy for Cool Doc HVAC Service website.',
+  terms: 'Terms of service for Cool Doc HVAC Service.',
+  careers: 'HVAC technician jobs in San Fernando Valley. Join Cool Doc HVAC — competitive pay, benefits, family culture.',
+  membership: 'Cool Doc Shield maintenance plans — annual HVAC tune-ups, priority scheduling, and member rates for San Fernando Valley homeowners. (818) 731-0445.',
+  pricing: 'HVAC service pricing in San Fernando Valley. AC repair, furnace repair, ductless installation. Transparent starting rates. Cool Doc HVAC (818) 731-0445.',
+  accessibility: 'Accessibility statement for Cool Doc HVAC Service website. We are committed to WCAG 2.1 AA compliance. Contact (818) 731-0445 for assistance.',
+  cookies: 'Cookie policy for Cool Doc HVAC Service. We use essential cookies only. No advertising tracking. California and federal privacy law compliant.',
+  'do-not-sell': 'Opt out of the sale or sharing of your personal information under CCPA. Cool Doc HVAC Service does not sell customer data.',
+  '404': 'Page not found — Cool Doc HVAC Service.',
+};
+
+const PAGE_TITLES: Record<string, string> = {
+  home:        'Cool Doc HVAC Service | AC Repair & HVAC San Fernando Valley',
+  residential: 'Residential HVAC Service San Fernando Valley | Cool Doc',
+  commercial:  'Commercial HVAC Service Los Angeles | Cool Doc',
+  'ac-repair': 'AC Repair San Fernando Valley — Same Day | Cool Doc HVAC',
+  heating:     'Heating & Furnace Repair Los Angeles | Cool Doc HVAC',
+  maintenance: 'HVAC Maintenance Plans San Fernando Valley | Cool Doc',
+  ductless:            'Ductless Mini-Split Installation & Repair LA | Cool Doc HVAC',
+  'hvac-installation': 'HVAC System Installation San Fernando Valley | Cool Doc',
+  'heat-pump':         'Heat Pump Repair & Installation Los Angeles | Cool Doc',
+  'air-quality':       'Indoor Air Quality Solutions San Fernando Valley | Cool Doc',
+  about:               'About Us — Cool Doc HVAC Service',
+  contact:     'Book HVAC Service | Contact Cool Doc HVAC',
+  blog:        'HVAC Tips & Guides | Cool Doc HVAC',
+  faq:         'FAQ — HVAC Questions Answered | Cool Doc HVAC',
+  financing:   'HVAC Financing — Pay Over Time | Cool Doc HVAC',
+  specials:    'Current Deals & Specials | Cool Doc HVAC',
+  licenses:    'Licensed, Bonded & Insured | Cool Doc HVAC',
+  reviews:       'Customer Reviews | Cool Doc HVAC San Fernando Valley',
+  privacy:       'Privacy Policy | Cool Doc HVAC Service',
+  terms:         'Terms of Service | Cool Doc HVAC Service',
+  careers:       'Careers — Join the Cool Doc Team | Cool Doc HVAC',
+  membership:    'Cool Doc Shield Maintenance Plans | Cool Doc HVAC',
+  pricing:       'HVAC Pricing & Rates San Fernando Valley | Cool Doc HVAC',
+  'sitemap-page': 'Site Map | Cool Doc HVAC Service',
+  'blog-article': 'HVAC Article | Cool Doc HVAC',
+  accessibility: 'Accessibility Statement | Cool Doc HVAC Service',
+  cookies: 'Cookie Policy | Cool Doc HVAC Service',
+  'do-not-sell': 'Do Not Sell My Info (CCPA) | Cool Doc HVAC Service',
+  '404':         'Page Not Found | Cool Doc HVAC',
+};
+
+const applyMeta = (titleKey: string, path: string = '/') => {
+  const title = PAGE_TITLES[titleKey] ?? PAGE_TITLES.home;
+  const desc = PAGE_META[titleKey] ?? PAGE_META.home;
+  const canonicalUrl = `https://cooldochvac.com${path || '/'}`;
+  const ogImage = 'https://cooldochvac.com/generated/hero-hvac-bg.jpg';
+
+  document.title = title;
+
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute('content', desc);
+
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute('content', desc);
+
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', title);
+
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+
+  const ogImageTag = document.querySelector('meta[property="og:image"]');
+  if (ogImageTag) ogImageTag.setAttribute('content', ogImage);
+
+  const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+  if (twitterTitle) twitterTitle.setAttribute('content', title);
+
+  const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+  if (twitterDesc) twitterDesc.setAttribute('content', desc);
+
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) {
+    canonical.setAttribute('href', canonicalUrl);
+  } else {
+    const link = document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    link.setAttribute('href', canonicalUrl);
+    document.head.appendChild(link);
+  }
+};
+
+const parsePath = (pathname: string): { page: string; slug?: string } => {
+  const clean = pathname.replace(/\/$/, '') || '/';
+  if (clean === '/' || clean === '/home') return { page: 'home' };
+  if (clean === '/residential') return { page: 'residential' };
+  if (clean === '/commercial') return { page: 'commercial' };
+  if (clean === '/ac-repair') return { page: 'service', slug: 'ac-repair' };
+  if (clean === '/heating') return { page: 'service', slug: 'heating' };
+  if (clean === '/hvac-maintenance') return { page: 'service', slug: 'maintenance' };
+  if (clean === '/ductless') return { page: 'service', slug: 'ductless' };
+  if (clean === '/hvac-installation') return { page: 'service', slug: 'hvac-installation' };
+  if (clean === '/heat-pump') return { page: 'service', slug: 'heat-pump' };
+  if (clean === '/air-quality') return { page: 'service', slug: 'air-quality' };
+  if (clean === '/about') return { page: 'about' };
+  if (clean === '/contact') return { page: 'contact' };
+  if (clean === '/faq') return { page: 'faq' };
+  if (clean === '/financing') return { page: 'financing' };
+  if (clean === '/specials') return { page: 'specials' };
+  if (clean === '/licenses') return { page: 'licenses' };
+  if (clean === '/reviews') return { page: 'reviews' };
+  if (clean === '/privacy') return { page: 'privacy' };
+  if (clean === '/terms') return { page: 'terms' };
+  if (clean === '/careers') return { page: 'careers' };
+  if (clean === '/membership') return { page: 'membership' };
+  if (clean === '/pricing') return { page: 'pricing' };
+  if (clean === '/sitemap-page') return { page: 'sitemap-page' };
+  if (clean === '/accessibility') return { page: 'accessibility' };
+  if (clean === '/cookies') return { page: 'cookies' };
+  if (clean === '/do-not-sell') return { page: 'do-not-sell' };
+  const blogArticleMatch = clean.match(/^\/blog\/(.+)$/);
+  if (blogArticleMatch) return { page: 'blog-article', slug: blogArticleMatch[1] };
+  if (clean === '/blog') return { page: 'blog' };
+  const cityMatch = clean.match(/^\/city\/(.+)$/);
+  if (cityMatch) return { page: 'city', slug: cityMatch[1] };
+  return { page: '404' };
+};
 
 const App: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [route, setRoute] = useState(() => parsePath(window.location.pathname));
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+  const navigate: NavigateFn = useCallback((path: string) => {
+    window.history.pushState({}, '', path);
+    const parsed = parsePath(path);
+    setRoute(parsed);
+    const titleKey = parsed.slug === 'ac-repair' ? 'ac-repair'
+      : parsed.slug === 'heating' ? 'heating'
+      : parsed.slug === 'maintenance' ? 'maintenance'
+      : parsed.slug === 'ductless' ? 'ductless'
+      : parsed.slug === 'hvac-installation' ? 'hvac-installation'
+      : parsed.slug === 'heat-pump' ? 'heat-pump'
+      : parsed.slug === 'air-quality' ? 'air-quality'
+      : parsed.page;
+    applyMeta(titleKey, path);
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
+  useEffect(() => {
+    // Apply meta for the initial route on first mount
+    const initial = parsePath(window.location.pathname);
+    const initialKey = initial.slug === 'ac-repair' ? 'ac-repair'
+      : initial.slug === 'heating' ? 'heating'
+      : initial.slug === 'maintenance' ? 'maintenance'
+      : initial.slug === 'ductless' ? 'ductless'
+      : initial.slug === 'hvac-installation' ? 'hvac-installation'
+      : initial.slug === 'heat-pump' ? 'heat-pump'
+      : initial.slug === 'air-quality' ? 'air-quality'
+      : initial.page;
+    applyMeta(initialKey, window.location.pathname);
+
+    const onPop = () => {
+      const parsed = parsePath(window.location.pathname);
+      setRoute(parsed);
+      const titleKey = parsed.slug === 'ac-repair' ? 'ac-repair'
+        : parsed.slug === 'heating' ? 'heating'
+        : parsed.slug === 'maintenance' ? 'maintenance'
+        : parsed.slug === 'ductless' ? 'ductless'
+        : parsed.slug === 'hvac-installation' ? 'hvac-installation'
+        : parsed.slug === 'heat-pump' ? 'heat-pump'
+        : parsed.slug === 'air-quality' ? 'air-quality'
+        : parsed.page;
+      applyMeta(titleKey, window.location.pathname);
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  const renderPage = () => {
+    switch (route.page) {
+      case 'home':       return <HomePage navigate={navigate} />;
+      case 'residential': return <ResidentialPage navigate={navigate} />;
+      case 'commercial': return <CommercialPage navigate={navigate} />;
+      case 'service':    return <ServicePage service={route.slug ?? 'ac-repair'} navigate={navigate} />;
+      case 'about':      return <AboutPage navigate={navigate} />;
+      case 'contact':    return <ContactPage navigate={navigate} />;
+      case 'city':       return <CityPage slug={route.slug ?? ''} navigate={navigate} />;
+      case 'blog':       return <BlogPage navigate={navigate} />;
+      case 'faq':        return <FAQPage navigate={navigate} />;
+      case 'financing':  return <FinancingPage navigate={navigate} />;
+      case 'specials':   return <SpecialsPage navigate={navigate} />;
+      case 'licenses':   return <LicensesPage navigate={navigate} />;
+      case 'reviews':    return <ReviewsPage navigate={navigate} />;
+      case 'privacy':       return <PrivacyPage navigate={navigate} />;
+      case 'terms':         return <TermsPage navigate={navigate} />;
+      case 'careers':       return <CareersPage navigate={navigate} />;
+      case 'membership':    return <MembershipPage navigate={navigate} />;
+      case 'pricing':       return <PricingPage navigate={navigate} />;
+      case 'sitemap-page':  return <SitemapPage navigate={navigate} />;
+      case 'blog-article':  return <BlogArticlePage slug={route.slug ?? ''} navigate={navigate} />;
+      case 'accessibility': return <AccessibilityPage navigate={navigate} />;
+      case 'cookies':       return <CookiePolicyPage navigate={navigate} />;
+      case 'do-not-sell':   return <DoNotSellPage navigate={navigate} />;
+      default:              return <NotFoundPage navigate={navigate} />;
+    }
+  };
+
   return (
-    <>
-      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-
-      <div className={`relative w-full min-h-screen overflow-x-hidden bg-[#F4F6F8] text-[#1D1D1B] font-sans selection:bg-[#E30613] selection:text-white scroll-smooth ${isLoading ? 'h-screen overflow-hidden' : ''}`}>
-
-        {/* 1. Global Noise Overlay - Texture */}
-        <div className="fixed inset-0 z-[9999] pointer-events-none opacity-[0.03] mix-blend-overlay"
-          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")` }}>
-        </div>
-
-        {/* 2. Base Technical Grid (Static Grey) */}
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#E5E7EB_1px,transparent_1px),linear-gradient(to_bottom,#E5E7EB_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-        </div>
-
-        {/* 3. GENERATIVE ART LAYER: "The Living Grid" */}
-        <div
-          className="fixed inset-0 z-[1] pointer-events-none transition-opacity duration-500"
-          style={{
-            maskImage: 'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
-            WebkitMaskImage: 'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
-          }}
-        >
-          {/* The Aurora Gradient (Blue/Red/Yellow) - Parallax Movement - DIMMED */}
-          <div
-            className="absolute inset-[-50%] bg-[conic-gradient(from_0deg_at_50%_50%,#1866B9_0deg,#E30613_120deg,#FDC506_240deg,#1866B9_360deg)] opacity-15 animate-spin-slower blur-3xl will-change-transform"
-            style={{
-              transform: 'translate(calc(var(--mouse-x, 0) * -0.03px), calc(var(--mouse-y, 0) * -0.03px))'
-            }}
-          ></div>
-
-          {/* GRID LINE HIGHLIGHT - Explicitly highlights borders */}
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `linear-gradient(to_right, rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(to_bottom, rgba(255,255,255,0.8) 1px, transparent 1px)`,
-              backgroundSize: '40px 40px',
-              maskImage: 'radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
-              WebkitMaskImage: 'radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
-            }}
-          ></div>
-
-          {/* Core Hotspot - Brighter white glow exactly at cursor */}
-          <div
-            className="absolute w-[300px] h-[300px] bg-white/30 blur-[80px] rounded-full pointer-events-none mix-blend-overlay"
-            style={{
-              left: 'var(--mouse-x)',
-              top: 'var(--mouse-y)',
-              transform: 'translate(-50%, -50%)'
-            }}
-          ></div>
-        </div>
-
-        <LiveBookings />
-        <ExitModal />
-        <ChatBot />
-
-        <Header />
-
-        <section className="relative w-full min-h-[100vh] flex flex-col pt-32 md:pt-40 pb-20 overflow-hidden">
-
-          <Neighborhood videoUrl={null} />
-
-          <div className="flex-grow flex flex-col justify-center px-6 md:px-12 lg:px-20 relative z-20">
-            <div className="w-full max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-
-              <div className="lg:col-span-7 order-1 relative">
-                {/* Decorative vertical line */}
-                <div className="absolute -left-12 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden xl:block"></div>
-                <HeroText />
-              </div>
-
-              <div id="quote" className="lg:col-span-5 order-2 relative h-auto flex items-center justify-center lg:justify-end perspective-1000">
-                <HeroForm />
-              </div>
-
-            </div>
+    <div className="relative w-full min-h-screen overflow-x-hidden bg-[#FAFAFA] text-[#1D1D1B] font-sans selection:bg-[#E30613] selection:text-white">
+      <ScrollProgress />
+      <CookieConsent />
+      <ChatBot />
+      <Header navigate={navigate} />
+      <Breadcrumbs route={route} navigate={navigate} />
+      <Suspense fallback={
+        <div className="min-h-screen bg-[#FAFAFA] flex items-center justify-center">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-12 h-12 border-4 border-[#E30613] border-t-transparent rounded-full animate-spin" />
+            <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">Loading...</span>
           </div>
-
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-50 z-20">
-            <div className="w-5 h-8 border-2 border-[#1D1D1B] rounded-full flex justify-center p-1">
-              <div className="w-1 h-2 bg-[#E30613] rounded-full animate-scroll-dot"></div>
-            </div>
-          </div>
-
-          {/* Wave Separator - White Transition */}
-          <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10">
-            <svg className="relative block w-[calc(100%+1.3px)] h-[60px] md:h-[100px]" style={{ transform: 'scaleX(-1)' }} data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="fill-[#F4F6F8]"></path>
-            </svg>
-          </div>
-        </section>
-
-        <ReviewBar />
-        <ServicesSection />
-        <Brands />
-        <Process />
-        <CostCalculator />
-        <Testimonials />
-        <TeamSection />
-        <FAQ />
-        <DetailedServices />
-        <WhyChooseUs />
-        <WarrantySection />
-        <ServiceMap />
-
-        <EmergencySection />
-        <BlogSection />
-        <SEOContent />
-        <Footer />
-
-        <style>{`
-          @keyframes scroll-dot {
-              0% { transform: translateY(0); opacity: 1; }
-              100% { transform: translateY(10px); opacity: 0; }
-          }
-          @keyframes fade-in-up {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); filter: blur(10px); }
-            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-          }
-          @keyframes spin-slower {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-          }
-          .animate-spin-slower {
-            animation: spin-slower 20s linear infinite;
-          }
-          .animate-fade-in-up {
-            animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          }
-          .perspective-1000 {
-              perspective: 1000px;
-          }
-        `}</style>
-
-      </div>
-    </>
+        </div>
+      }>
+        {renderPage()}
+      </Suspense>
+      <Footer navigate={navigate} />
+      <StickyMobileCTA navigate={navigate} />
+      <WhatsAppButton />
+      <DiscoveryQuiz />
+      <style>{`
+        @keyframes sway-hero {
+          0%, 100% { transform: rotate(-2deg); }
+          50% { transform: rotate(2deg); }
+        }
+        .animate-sway-hero {
+          animation: sway-hero 6s ease-in-out infinite;
+          transform-origin: bottom center;
+        }
+        @keyframes spin-slower {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slower {
+          animation: spin-slower 20s linear infinite;
+        }
+      `}</style>
+    </div>
   );
 };
 

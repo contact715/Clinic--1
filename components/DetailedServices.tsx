@@ -26,7 +26,7 @@ export const DetailedServices: React.FC = () => {
 
   return (
     <section className="py-12 md:py-24 bg-white relative z-20 border-t border-gray-100">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-12 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
         <div className="text-center mb-10 md:mb-16">
@@ -42,12 +42,12 @@ export const DetailedServices: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12">
             
             {/* Home Services Card */}
-            <div className="bg-[#F8FAFC] rounded-[1.5rem] md:rounded-[2.5rem] p-6 sm:p-8 md:p-12 border border-gray-100 relative overflow-hidden group hover:shadow-xl hover:border-gray-200 transition-all duration-500">
-                <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-[#1866B9]/5 rounded-bl-[2rem] md:rounded-bl-[3rem] -mr-6 -mt-6 md:-mr-8 md:-mt-8 transition-transform group-hover:scale-150 duration-700"></div>
-                
+            <div className="bg-[#F8FAFC] rounded-3xl p-6 sm:p-8 md:p-12 border border-gray-100 relative overflow-hidden group hover:shadow-xl hover:border-gray-200 transition-all duration-500">
+                <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-[#1866B9]/5 rounded-bl-3xl -mr-6 -mt-6 md:-mr-8 md:-mt-8 transition-transform group-hover:scale-150 duration-700"></div>
+
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 md:mb-8 relative z-10">
-                    <div className="w-10 h-10 md:w-14 md:h-14 bg-white rounded-xl md:rounded-2xl flex items-center justify-center text-[#1866B9] shadow-sm border border-gray-100 shrink-0">
-                        <Home size={20} className="md:w-7 md:h-7" strokeWidth={2} />
+                    <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#1866B9] shadow-sm border border-gray-100 shrink-0">
+                        <Home size={24} strokeWidth={2} />
                     </div>
                     <div>
                         <h3 className="text-lg md:text-2xl font-[900] text-[#1D1D1B]">Home Appliance Repair</h3>
@@ -72,12 +72,12 @@ export const DetailedServices: React.FC = () => {
             </div>
 
             {/* Commercial Services Card */}
-            <div className="bg-[#1D1D1B] rounded-[1.5rem] md:rounded-[2.5rem] p-6 sm:p-8 md:p-12 border border-gray-800 relative overflow-hidden group hover:shadow-2xl transition-all duration-500">
-                <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-[#E30613]/10 rounded-bl-[2rem] md:rounded-bl-[3rem] -mr-6 -mt-6 md:-mr-8 md:-mt-8 transition-transform group-hover:scale-150 duration-700"></div>
-                
+            <div className="bg-[#1D1D1B] rounded-3xl p-6 sm:p-8 md:p-12 border border-gray-800 relative overflow-hidden group hover:shadow-2xl transition-all duration-500">
+                <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-[#E30613]/10 rounded-bl-3xl -mr-6 -mt-6 md:-mr-8 md:-mt-8 transition-transform group-hover:scale-150 duration-700"></div>
+
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 md:mb-8 relative z-10">
-                    <div className="w-10 h-10 md:w-14 md:h-14 bg-[#2A2A2A] rounded-xl md:rounded-2xl flex items-center justify-center text-[#E30613] shadow-lg border border-gray-700 shrink-0">
-                        <Building2 size={20} className="md:w-7 md:h-7" strokeWidth={2} />
+                    <div className="w-12 h-12 bg-[#2A2A2A] rounded-xl flex items-center justify-center text-[#E30613] shadow-lg border border-gray-700 shrink-0">
+                        <Building2 size={24} strokeWidth={2} />
                     </div>
                     <div>
                         <h3 className="text-lg md:text-2xl font-[900] text-white">Commercial Services</h3>
